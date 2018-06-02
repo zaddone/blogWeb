@@ -1,0 +1,12 @@
+description = ""
+features = ["", ""]
+homepage = "https://github.com/zaddone/zaddone.github.io"
+license = ""
+licenselink = ""
+min_version = 0.18
+name = "zaddone Theme"
+tags = ["website"]
+
+[author]
+  homepage = "https://github.com/zaddone"
+  name = "zaddone"

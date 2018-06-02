@@ -1,0 +1,3 @@
+[submodule "hugo-bootstrap"]
+	path = hugo-bootstrap
+	url = ./themes/hugo-bootstrap

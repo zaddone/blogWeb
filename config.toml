@@ -1,0 +1,32 @@
+baseURL = "https://zaddone.github.io/"
+languageCode = "zh-us"
+title = "Zaddone Site"
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  description = "Zaddone's Site"
+  author = "zaddone"
+
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.speakerDeck]
+    disable = true
+  [privacy.twitter]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true
