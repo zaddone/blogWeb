@@ -4,8 +4,6 @@ title = "Zaddone Site"
 contentdir = "content"
 layoutdir = "layouts"
 publishdir = "public"
-defaultContentLanguage = "en"
-defaultContentLanguageInSubdir = true
 
 [taxonomies]
   category = "categories"
