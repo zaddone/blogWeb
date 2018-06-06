@@ -49,8 +49,8 @@ func NewConfig()  *Config {
 		c.MBox = "INBOX"
 		c.Imap = "imap.qq.com:993"
 		c.User = "zaddone@qq.com"
-		c.Pass = "omngxacjppjucaae"
-		c.MsgCount = 1
+		c.Pass = ""
+		c.MsgCount = 0
 	}else{
 		if _,err := toml.DecodeFile(FileName,&c);err != nil {
 			log.Fatal(err)

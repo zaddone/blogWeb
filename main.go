@@ -14,7 +14,7 @@ import (
 type runFunc func()error
 var (
 	Site  = flag.String("site","https://zaddone.github.io","site addr")
-	Source= flag.String("source","/home/dimon/Documents/blog_web","filesystem path to read files relative from")
+	Source= flag.String("source",".","filesystem path to read files relative from")
 	Theme  = flag.String("theme","hugo-bootstrap","theme name")
 	runMap map[string]runFunc
 )
@@ -44,14 +44,15 @@ func StartCmd(cmd * exec.Cmd) (err error) {
 func deploy() error {
 	return StartCmd(exec.Command("hugo",
 			fmt.Sprintf("--theme=%s",*Theme),
-			fmt.Sprintf("--baseUrl=%s",*Site),
-			fmt.Sprintf("--source=%s",*Source)))
+			fmt.Sprintf("--baseUrl=%s",*Site)))
+			//fmt.Sprintf("--source=%s",*Source)))
 }
 func Push() (err error) {
 	err = os.Chdir(filepath.Join(*Source,public))
 	if err != nil {
 		return err
 	}
+	defer os.Chdir(*Source)
 	err = StartCmd(exec.Command("git","add","."))
 	if err != nil {
 		return err
@@ -76,10 +77,10 @@ func Update() (err error) {
 
 func Add() (err error) {
 
-	err = os.Chdir(*Source)
-	if err != nil {
-		return err
-	}
+	//err = os.Chdir(*Source)
+	//if err != nil {
+	//	return err
+	//}
 	now := time.Now()
 	return StartCmd(exec.Command("hugo","new",
 	filepath.Join("post",fmt.Sprintf("%d",now.Year()),
@@ -88,12 +89,19 @@ func Add() (err error) {
 }
 
 func init(){
+	var err error
+	*Source,err = filepath.Abs(*Source)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(*Source)
+
 	flag.Parse()
 	runMap = make(map[string]runFunc)
 	runMap["update"] = Update
 	runMap["add"] = Add
 
-	emailServer.Monitor(Update)
+	go emailServer.Monitor(Update)
 }
 
 func main(){
